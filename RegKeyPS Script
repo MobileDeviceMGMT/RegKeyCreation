@@ -1,0 +1,8 @@
+$Path = "HKLM:\Software\Policies\Google\Chrome\ExtensionInstallForcelist"
+$Name = "1"
+$value = "ppnbnpeolgkicgegkbkbjmhlideopiji;https://clients2.google.com/service/update2/crx"
+$type="REG_SZ" # String
+
+
+if((Test-Path -LiteralPath $path) -ne $true) {  New-Item  $Path -force -ea SilentlyContinue };
+New-ItemProperty -LiteralPath $path -Name $name -Value $value -PropertyType $type -Force -ea SilentlyContinue;
