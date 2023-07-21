@@ -7,7 +7,8 @@ $type="REG_SZ" # String
 if((Test-Path -LiteralPath $path) -ne $true) {  New-Item  $Path -force -ea SilentlyContinue };
 New-ItemProperty -LiteralPath $path -Name $name -Value $value -PropertyType $type -Force -ea SilentlyContinue;
 
-OR BELOW VERSIOn
+OR BELOW USE CUSTOM BELOW VERSION #All hail CHAT GPT
+
 
 $registryPath = "HKLM:\Software\Policies\Google\Chrome\ExtensionInstallForcelist"
 $valueName = "1"
