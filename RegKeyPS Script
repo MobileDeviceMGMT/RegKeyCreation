@@ -6,3 +6,23 @@ $type="REG_SZ" # String
 
 if((Test-Path -LiteralPath $path) -ne $true) {  New-Item  $Path -force -ea SilentlyContinue };
 New-ItemProperty -LiteralPath $path -Name $name -Value $value -PropertyType $type -Force -ea SilentlyContinue;
+
+OR BELOW VERSIOn
+
+$registryPath = "HKLM:\Software\Policies\Google\Chrome\ExtensionInstallForcelist"
+$valueName = "1"
+$valueData = "ppnbnpeolgkicgegkbkbjmhlideopiji;https://clients2.google.com/service/update2/crx"
+
+try {
+    # Create the registry key (if it doesn't exist)
+    if (!(Test-Path $registryPath)) {
+        New-Item -Path $registryPath -Force | Out-Null
+    }
+
+    # Set the REG_SZ value under the specified key
+    Set-ItemProperty -Path $registryPath -Name $valueName -Value $valueData -Type String
+
+    Write-Output "Registry key and value added successfully."
+} catch {
+    Write-Output "Error adding the registry key and value:`n$($_.Exception.Message)" -ForegroundColor Red
+}
